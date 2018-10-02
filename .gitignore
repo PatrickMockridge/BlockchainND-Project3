@@ -3,3 +3,4 @@ dist
 chaindata
 yarn-error.log
 yarn.lock
+.babelrc
