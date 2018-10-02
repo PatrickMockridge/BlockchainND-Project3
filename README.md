@@ -1,61 +1,122 @@
-# Blockchain Data
+### About
+This project demonstrates a simple private blockchain API in a local development environment using NodeJS, Express and LevelDB. This project was completed to fulfil the requirements of Project 2 of the [Udacity Blockchain Developer Nanodegree](https://eu.udacity.com/course/blockchain-developer-nanodegree--nd1309).
 
-Blockchain has the potential to change the way that the world approaches data. Develop Blockchain skills by understanding the data model behind Blockchain by developing your own simplified private blockchain.
+### Requirements
+* [Yarn: 1.10.1](https://yarnpkg.org)
+* [express](https://www.express.com)
+* [LevelDB](http://https://github.com/google/leveldb)
+* [Nodemon](https://github.com/remy/nodemon)
 
-## Getting Started
+## Usage
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+### Installation
 
-### Prerequisites
+## Run App
 
-Installing Node and NPM is pretty straightforward using the installer package available from the (Node.js® web site)[https://nodejs.org/en/].
-
-### Configuring your project
-
-- Use NPM to initialize your project and create package.json to store project dependencies.
-```
-npm init
-```
-- Install crypto-js with --save flag to save dependency to our package.json file
-```
-npm install crypto-js --save
-```
-- Install level with --save flag
-```
-npm install level --save
+```sh
+git clone https://github.com/PatrickMockridge/BlockchainND-Project2.git
+cd BlockchainND-Project2
+yarn install
 ```
 
-## Testing
+This installs the Node dependencies of the project.
 
-To test code:
-1: Open a command prompt or shell terminal after install node.js.
-2: Enter a node session, also known as REPL (Read-Evaluate-Print-Loop).
+### Start API server
+```sh
+yarn start
 ```
-node
-```
-3: Copy and paste your code into your node session
-4: Instantiate blockchain with blockchain variable
-```
-let blockchain = new Blockchain();
-```
-5: Generate 10 blocks using a for loop
-```
-for (var i = 0; i <= 10; i++) {
-  blockchain.addBlock(new Block("test data "+i));
+This starts the API server, listening on port 3000.
+
+### Endpoints
+
+The API endpoints implemented to fulfil the [Project Rubric](https://review.udacity.com/#!/rubrics/2040/view) are:
+
+### GET /info
+
+Example output:
+```json
+{
+  "status": true,
+  "message": "The Blockchain is alive!",
+  "size": 3
 }
 ```
-6: Validate blockchain
-```
-blockchain.validateChain();
-```
-7: Induce errors by changing block data
-```
-let inducedErrorBlocks = [2,4,7];
-for (var i = 0; i < inducedErrorBlocks.length; i++) {
-  blockchain.chain[inducedErrorBlocks[i]].data='induced chain error';
+
+### POST /block
+
+Example input:
+```json
+{
+  "data": "This is a test"
 }
 ```
-8: Validate blockchain. The chain should now fail with blocks 2,4, and 7.
+
+Example output:
+```json
+{
+    "success": true,
+    "data": {
+      "hash": "ebabc59a6d8d3436ed298d1602b067fa041c1c5944c68d928e20e8a3b4727748",
+      "height": 4,
+      "body" : "This is a test",
+      "time": "1538499335",
+      "previousBlockHash": "bccf09bcc51b3eedf7f5486a20c0053e384e9bb630701648c4e018bc5a89772b"
+    }
+}
 ```
-blockchain.validateChain();
+
+### GET /chain
+
+Example output:
+```json
+[
+  {
+    "hash": "bf8c0a574701a7598b95c11d6574c08bb70378fcf6992b86974db8d852fea875",
+    "height": 0,
+    "body": "First block in the chain - Genesis block",
+    "time": "1538486754",
+    "previousBlockHash": "",
+    "isValid": true
+  },
+  {
+    "hash": "8d8e80393afcb2a4bff938e63e6816efc8d915f6d67a34252470f61fd95b1426",
+    "height": 1,
+    "body": "String Test",
+    "time": "1538495621",
+    "previousBlockHash": "bf8c0a574701a7598b95c11d6574c08bb70378fcf6992b86974db8d852fea875",
+    "isValid": true
+  },
+  {
+    "hash": "2c2b4548d465be5acaddffde4691d6afd9f9ec8945aa62348769c40a6c0d9f2d",
+    "height": 2,
+    "body": "String Test 2",
+    "time": "1538496614",
+    "previousBlockHash": "8d8e80393afcb2a4bff938e63e6816efc8d915f6d67a34252470f61fd95b1426",
+    "isValid": true
+  },
+  {
+    "hash": "bccf09bcc51b3eedf7f5486a20c0053e384e9bb630701648c4e018bc5a89772b",
+    "height": 3,
+    "body": "String Test 3",
+    "time": "1538497340",
+    "previousBlockHash": "2c2b4548d465be5acaddffde4691d6afd9f9ec8945aa62348769c40a6c0d9f2d",
+    "isValid": true
+  }
+]
+```
+
+### GET /block/{height}
+
+Example output:
+```json
+{
+  "success": true,
+  "data": {
+    "hash": "bccf09bcc51b3eedf7f5486a20c0053e384e9bb630701648c4e018bc5a89772b",
+    "height": 3,
+    "body": "String Test 3",
+    "time": "1538497340",
+    "previousBlockHash": "2c2b4548d465be5acaddffde4691d6afd9f9ec8945aa62348769c40a6c0d9f2d"
+  }
+}
 ```
