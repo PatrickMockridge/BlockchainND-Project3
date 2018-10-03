@@ -16,8 +16,7 @@ module.exports = {
     })
   },
   block: (req, res) => {
-    const blockData = req.body.data
-
+    const blockData = req.body
     if (blockData) {
       const newBlock = new Block(blockData)
       blockChain.addBlock(newBlock).then(block => {

@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const routes = require('./src/routes')
 
-const PORT = 3000
+const PORT = 8000
 
 const server = express()
 

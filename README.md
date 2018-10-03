@@ -1,5 +1,5 @@
 ### About
-This project demonstrates a simple private blockchain API in a local development environment using NodeJS, Express and LevelDB. This project was completed to fulfil the requirements of Project 2 of the [Udacity Blockchain Developer Nanodegree](https://eu.udacity.com/course/blockchain-developer-nanodegree--nd1309).
+This project demonstrates a simple private blockchain API in a local development environment using NodeJS, Express and LevelDB. This project was completed to fulfil the requirements of Project 2 and Project 3 (unintentionally) of the [Udacity Blockchain Developer Nanodegree](https://eu.udacity.com/course/blockchain-developer-nanodegree--nd1309).
 
 ### Requirements
 * [Yarn: 1.10.1](https://yarnpkg.org)
@@ -25,7 +25,7 @@ This installs the Node dependencies of the project.
 ```sh
 yarn start
 ```
-This starts the API server, listening on port 3000.
+This starts the API server, listening on port 8000.
 
 ### Endpoints
 
