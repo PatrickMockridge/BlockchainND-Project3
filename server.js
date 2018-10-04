@@ -10,7 +10,7 @@ const server = express()
 server.use(compression())
 
 server.use(bodyParser.urlencoded({ extended: true }))
-server.use(bodyParser.json())
+server.use(bodyParser.json({verify:function(req,res,buf){req.rawBody=buf}}))
 server.use(require('method-override')())
 
 server.use('/', routes)

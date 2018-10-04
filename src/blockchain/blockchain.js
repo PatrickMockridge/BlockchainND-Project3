@@ -11,7 +11,7 @@ class Blockchain {
     leveldb.getBlockHeight().then(num => {
       if (num === 0) {
         this.addBlock(
-          new Block('First block in the chain - Genesis block')
+          new Block('The Times 03/Jan/2009 Chancellor on brink of second bailout for banks')
         ).then(() => console.log('genesis block created'))
       }
     })

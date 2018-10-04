@@ -47,7 +47,7 @@ Example output:
 Example input:
 ```json
 {
-  "data": "This is a test"
+  "body": "This is a test"
 }
 ```
 

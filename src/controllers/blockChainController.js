@@ -16,8 +16,8 @@ module.exports = {
     })
   },
   block: (req, res) => {
-    const blockData = req.body
-    if (blockData) {
+    const blockData = req.body.body
+    if ((typeof blockData === "string") && blockData != {} && blockData) {
       const newBlock = new Block(blockData)
       blockChain.addBlock(newBlock).then(block => {
         res.json({
@@ -29,7 +29,7 @@ module.exports = {
       res.statusCode = 400
       res.json({
         success: false,
-        message: `400 error: Please provide block data in the body object of the request`
+        message: `400 error: Please provide block data in the body object of the request. Ensure the data is a of type 'string'.`
       })
     }
   },
